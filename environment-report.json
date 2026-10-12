@@ -1,0 +1,16 @@
+{
+  "python": "3.12.14",
+  "platform": "Linux-6.18.44-x86_64-with-glibc2.39",
+  "storage": {
+    "free_bytes": 28854882304,
+    "workspace_bytes": 1461319,
+    "temporary_bytes": 0,
+    "process_ram_bytes": 66486272,
+    "available_ram_bytes": 9747230720,
+    "workspace_limit_bytes": 16106127360,
+    "free_reserve_bytes": 26843545600
+  },
+  "backend": "none",
+  "upload_enabled": false,
+  "safe_to_start": true
+}

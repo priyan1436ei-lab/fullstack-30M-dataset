@@ -1,0 +1,5 @@
+schema_version: "1.0"
+allowed_licenses: [MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, CC0-1.0]
+require_provenance: true
+require_fault_failure: true
+require_fixed_success: true

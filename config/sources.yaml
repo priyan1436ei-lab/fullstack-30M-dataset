@@ -1,0 +1,12 @@
+# V1 reads reviewed local files only, never clones or scrapes.
+# A public URL is provenance, not permission. Set reviewed: true only after review.
+sources: []
+# - id: my-original-config
+#   path: examples/service.yaml
+#   license: MIT
+#   reviewed: true
+#   redistribution_allowed: true
+#   source_url: user-authored://my-original-config
+#   repository: my-original-project
+#   commit: local-v1
+#   attribution: Your name

@@ -1,0 +1,388 @@
+{
+  "$defs": {
+    "Action": {
+      "additionalProperties": false,
+      "properties": {
+        "step_number": {
+          "title": "Step Number",
+          "type": "integer"
+        },
+        "tool_name": {
+          "title": "Tool Name",
+          "type": "string"
+        },
+        "tool_arguments": {
+          "title": "Tool Arguments",
+          "type": "string"
+        },
+        "observed_output": {
+          "title": "Observed Output",
+          "type": "string"
+        },
+        "exit_code": {
+          "title": "Exit Code",
+          "type": "integer"
+        },
+        "action_result": {
+          "title": "Action Result",
+          "type": "string"
+        },
+        "next_action": {
+          "title": "Next Action",
+          "type": "string"
+        }
+      },
+      "required": [
+        "step_number",
+        "tool_name",
+        "tool_arguments",
+        "observed_output",
+        "exit_code",
+        "action_result",
+        "next_action"
+      ],
+      "title": "Action",
+      "type": "object"
+    },
+    "File": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "title": "Path",
+          "type": "string"
+        },
+        "content": {
+          "title": "Content",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "content"
+      ],
+      "title": "File",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "source_url": {
+          "title": "Source Url",
+          "type": "string"
+        },
+        "repository_identifier": {
+          "title": "Repository Identifier",
+          "type": "string"
+        },
+        "commit_revision": {
+          "title": "Commit Revision",
+          "type": "string"
+        },
+        "file_path": {
+          "title": "File Path",
+          "type": "string"
+        },
+        "attribution": {
+          "title": "Attribution",
+          "type": "string"
+        },
+        "collected_at": {
+          "title": "Collected At",
+          "type": "string"
+        },
+        "redistribution_allowed": {
+          "title": "Redistribution Allowed",
+          "type": "boolean"
+        },
+        "provenance_category": {
+          "title": "Provenance Category",
+          "type": "string"
+        },
+        "template_id": {
+          "title": "Template Id",
+          "type": "string"
+        },
+        "mutation_id": {
+          "title": "Mutation Id",
+          "type": "string"
+        },
+        "source_family": {
+          "title": "Source Family",
+          "type": "string"
+        },
+        "lineage": {
+          "title": "Lineage",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_url",
+        "repository_identifier",
+        "commit_revision",
+        "file_path",
+        "attribution",
+        "collected_at",
+        "redistribution_allowed",
+        "provenance_category",
+        "template_id",
+        "mutation_id",
+        "source_family",
+        "lineage"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "TestResult": {
+      "additionalProperties": false,
+      "properties": {
+        "phase": {
+          "enum": [
+            "baseline",
+            "fault",
+            "fixed",
+            "syntax"
+          ],
+          "title": "Phase",
+          "type": "string"
+        },
+        "command": {
+          "title": "Command",
+          "type": "string"
+        },
+        "exit_code": {
+          "title": "Exit Code",
+          "type": "integer"
+        },
+        "output": {
+          "title": "Output",
+          "type": "string"
+        },
+        "verification_kind": {
+          "enum": [
+            "static_policy",
+            "syntax",
+            "trusted_python"
+          ],
+          "title": "Verification Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "phase",
+        "command",
+        "exit_code",
+        "output",
+        "verification_kind"
+      ],
+      "title": "TestResult",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "record_id": {
+      "title": "Record Id",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "1.0",
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "task_category": {
+      "title": "Task Category",
+      "type": "string"
+    },
+    "task_subcategory": {
+      "title": "Task Subcategory",
+      "type": "string"
+    },
+    "programming_language": {
+      "title": "Programming Language",
+      "type": "string"
+    },
+    "framework": {
+      "title": "Framework",
+      "type": "string"
+    },
+    "difficulty": {
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ],
+      "title": "Difficulty",
+      "type": "string"
+    },
+    "instruction": {
+      "title": "Instruction",
+      "type": "string"
+    },
+    "environment": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Environment",
+      "type": "object"
+    },
+    "repository_context": {
+      "title": "Repository Context",
+      "type": "string"
+    },
+    "input_files": {
+      "items": {
+        "$ref": "#/$defs/File"
+      },
+      "title": "Input Files",
+      "type": "array"
+    },
+    "observations": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Observations",
+      "type": "array"
+    },
+    "error_logs": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Error Logs",
+      "type": "array"
+    },
+    "agent_actions": {
+      "items": {
+        "$ref": "#/$defs/Action"
+      },
+      "title": "Agent Actions",
+      "type": "array"
+    },
+    "expected_behavior": {
+      "title": "Expected Behavior",
+      "type": "string"
+    },
+    "generated_patch": {
+      "items": {
+        "$ref": "#/$defs/File"
+      },
+      "title": "Generated Patch",
+      "type": "array"
+    },
+    "test_commands": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Test Commands",
+      "type": "array"
+    },
+    "test_results": {
+      "items": {
+        "$ref": "#/$defs/TestResult"
+      },
+      "title": "Test Results",
+      "type": "array"
+    },
+    "verification_status": {
+      "enum": [
+        "static_validated",
+        "synthetic_unverified",
+        "syntax_validated",
+        "runtime_verified"
+      ],
+      "title": "Verification Status",
+      "type": "string"
+    },
+    "quality_state": {
+      "enum": [
+        "RAW",
+        "NORMALIZED",
+        "SYNTHETIC_UNVERIFIED",
+        "VALIDATION_FAILED",
+        "VALIDATED",
+        "REVIEWED"
+      ],
+      "title": "Quality State",
+      "type": "string"
+    },
+    "quality_score": {
+      "maximum": 1,
+      "minimum": 0,
+      "title": "Quality Score",
+      "type": "number"
+    },
+    "source_type": {
+      "enum": [
+        "original_synthetic",
+        "reviewed_local"
+      ],
+      "title": "Source Type",
+      "type": "string"
+    },
+    "source_license": {
+      "title": "Source License",
+      "type": "string"
+    },
+    "source_reference": {
+      "title": "Source Reference",
+      "type": "string"
+    },
+    "source_commit": {
+      "title": "Source Commit",
+      "type": "string"
+    },
+    "provenance": {
+      "$ref": "#/$defs/Provenance"
+    },
+    "created_at": {
+      "title": "Created At",
+      "type": "string"
+    },
+    "content_hash": {
+      "title": "Content Hash",
+      "type": "string"
+    },
+    "record_split": {
+      "enum": [
+        "train",
+        "validation",
+        "test",
+        "heldout"
+      ],
+      "title": "Record Split",
+      "type": "string"
+    }
+  },
+  "required": [
+    "record_id",
+    "task_category",
+    "task_subcategory",
+    "programming_language",
+    "framework",
+    "difficulty",
+    "instruction",
+    "environment",
+    "repository_context",
+    "input_files",
+    "observations",
+    "error_logs",
+    "agent_actions",
+    "expected_behavior",
+    "generated_patch",
+    "test_commands",
+    "test_results",
+    "verification_status",
+    "quality_state",
+    "quality_score",
+    "source_type",
+    "source_license",
+    "source_reference",
+    "source_commit",
+    "provenance",
+    "created_at",
+    "content_hash",
+    "record_split"
+  ],
+  "title": "Record",
+  "type": "object"
+}

@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "fullstackops"
+version = "0.1.0"
+description = "Storage-bounded, provenance-aware DevOps dataset pilot builder"
+requires-python = ">=3.11"
+dependencies = ["pyarrow>=15,<25", "pydantic>=2.7,<3", "psutil>=5.9,<8", "PyYAML>=6,<7"]
+[project.optional-dependencies]
+test = ["pytest>=8,<10"]
+s3 = ["boto3>=1.34,<2"]
+hf = ["huggingface-hub>=0.25,<2"]
+[project.scripts]
+fullstackops = "fullstackops.cli:main"
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
